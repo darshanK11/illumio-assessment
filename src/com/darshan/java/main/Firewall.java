@@ -11,7 +11,7 @@ import java.util.Set;
 public class Firewall {
     private Set<ConnectionParameter> connectionParameters;
 
-    public Set<ConnectionParameter> getRules() { return connectionParameters; }
+    public Set<ConnectionParameter> getConnectionParameters() { return connectionParameters; }
 
     public Firewall(final String filePath) throws IOException {
         this.connectionParameters = new HashSet<>();
@@ -19,7 +19,7 @@ public class Firewall {
         String line;
         while ((line = br.readLine()) != null) {
             String[] parameters = line.split(",");
-            getRules().add(
+            getConnectionParameters().add(
                     new ConnectionParameter(
                             parameters[0],
                             parameters[1],
@@ -32,9 +32,9 @@ public class Firewall {
 
     public boolean accept_packet(final String direction, final String protocol, final int port, final String ipAddress) {
         ConnectionParameter connectionParameters = new ConnectionParameter(direction, protocol, String.valueOf(port), ipAddress);
-        Iterator<ConnectionParameter> ruleIterator = getRules().iterator();
-        while (ruleIterator.hasNext()) {
-            if (connectionParameters.equals(ruleIterator.next()))
+        Iterator<ConnectionParameter> archiveIterator = getConnectionParameters().iterator();
+        while (archiveIterator.hasNext()) {
+            if (connectionParameters.equals(archiveIterator.next()))
                 return true;
         }
         return false;

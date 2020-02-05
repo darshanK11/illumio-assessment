@@ -32,10 +32,10 @@ public class ConnectionParameter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ConnectionParameter that = (ConnectionParameter) o;
-        return getDirection().equals(that.getDirection()) &&
-                getProtocol().equals(that.getProtocol()) &&
-                getPort().equals(that.getPort()) &&
-                getIpAddress().equals(that.getIpAddress());
+        return Objects.equals(getDirection(), that.getDirection()) &&
+                Objects.equals(getProtocol(), that.getProtocol()) &&
+                Helper.isValidPort( getPort(), that.getPort().split("-")) &&
+                Helper.isValidIp( getIpAddress(), that.getIpAddress().split("-"));
     }
 
     @Override

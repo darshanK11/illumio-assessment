@@ -11,7 +11,7 @@ public class Helper {
         if(archived.length == 1)
             return compareArr(input, archived[0], EQ);
         return compareArr(archived[0], input, LEQ) &&
-                compareArr(input, archived[0], LEQ);
+                compareArr(input, archived[1], LEQ);
     }
 
     public static boolean isValidIp(final String input, final String[] archived) {
