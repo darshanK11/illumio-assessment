@@ -26,4 +26,20 @@ public class ConnectionParameter {
         this.port = port;
         this.ipAddress = ipAddress;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ConnectionParameter that = (ConnectionParameter) o;
+        return getDirection().equals(that.getDirection()) &&
+                getProtocol().equals(that.getProtocol()) &&
+                getPort().equals(that.getPort()) &&
+                getIpAddress().equals(that.getIpAddress());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDirection(), getProtocol(), getPort(), getIpAddress());
+    }
 }
